@@ -38,7 +38,7 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; content:
 }
 
 // Import all markdown files from content/posts at build time
-const postFiles = import.meta.glob('/content/posts/*.md', { as: 'raw', eager: true });
+const postFiles = import.meta.glob('/content/posts/*.md', { query: '?raw', import: 'default', eager: true });
 const settingsFile = import.meta.glob('/content/settings.json', { eager: true });
 
 export function getAllPosts(): BlogPost[] {
