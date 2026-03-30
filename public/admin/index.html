@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script>
-  if (window.location.hostname !== 'localhost') {
-    localStorage.setItem('netlifySiteURL', 'https://kindred-ink-61.netlify.app');
-  }
-</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
@@ -14,10 +9,11 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
   <script>
+    // 3. FORCE the widget to point to your Netlify URL
     if (window.netlifyIdentity) {
-      // Point this EXACTLY to your netlify URL
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           window.netlifyIdentity.on("login", () => {
@@ -25,18 +21,21 @@
           });
         }
       });
+      // This line is the critical fix for Vercel
+      window.netlifyIdentity.setLocale('en');
     }
-    
-    // This is the "Magic Fix" for Vercel + Netlify Identity
+
+    // 4. Manually trigger the login with the Netlify site destination
     document.addEventListener('DOMContentLoaded', () => {
-      const loginButton = document.querySelector('button');
-      if (loginButton) {
-        loginButton.addEventListener('click', () => {
+      const btn = document.querySelector('button');
+      if (btn) {
+        btn.onclick = () => {
           window.netlifyIdentity.open();
-        });
+          // Replace the URL below with your actual Netlify site URL from the screenshot
+          window.netlifyIdentity.setProxy('https://kindred-ink-61.netlify.app');
+        };
       }
     });
   </script>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
