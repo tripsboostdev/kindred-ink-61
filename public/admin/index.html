@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Admin — Content Manager</title>
-  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" data-netlify-identity-widget-url="https://kindred-ink-61.netlify.app"></script>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
+
   <script>
-    // 3. FORCE the widget to point to your Netlify URL
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -21,21 +19,7 @@
           });
         }
       });
-      // This line is the critical fix for Vercel
-      window.netlifyIdentity.setLocale('en');
     }
-
-    // 4. Manually trigger the login with the Netlify site destination
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.querySelector('button');
-      if (btn) {
-        btn.onclick = () => {
-          window.netlifyIdentity.open();
-          // Replace the URL below with your actual Netlify site URL from the screenshot
-          window.netlifyIdentity.setProxy('https://kindred-ink-61.netlify.app');
-        };
-      }
-    });
   </script>
 </body>
 </html>
