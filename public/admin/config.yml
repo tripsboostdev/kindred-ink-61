@@ -7,23 +7,25 @@ public_folder: "/images"
 
 collections:
   - name: "posts"
-    label: "Posts"
+    label: "Blog Posts"
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
+    extension: "md"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Cover Image", name: "image", widget: "image" }
+      - { label: "Cover Image", name: "cover", widget: "image" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "settings"
-    label: "Settings"
+    label: "Site Settings"
     files:
-      - file: "content/settings.json"
-        label: "Site Settings"
-        name: "site"
+      - label: "General Settings"
+        name: "general"
+        file: "content/settings.json"
         fields:
           - { label: "Email", name: "email", widget: "string" }
-          - { label: "LinkedIn", name: "linkedin", widget: "string" }
-          - { label: "X (Twitter)", name: "x", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
+          - { label: "X (Twitter) URL", name: "twitter", widget: "string" }
